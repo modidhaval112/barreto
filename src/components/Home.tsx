@@ -1,34 +1,28 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import clsx from "clsx";
+import Image from "next/image";
 import Carousel from "./Carousel";
 
-const sections = [
+const carouselItems = [
   {
-    id: "01",
     title: "Materials, reborn",
-    image: "/images/materials.jpg",
+    description: "Pioneering deep tech for tomorrow",
+    image: "/hero/hero.png", // Update with your image paths
   },
   {
-    id: "02",
-    title: "Pioneering deep tech for tomorrow",
-    image: "/images/deeptech.jpg",
+    title: "Waste reimagined",
+    description: "Advanced business solutions",
+    image: "/hero/hero.png",
   },
   {
-    id: "03",
-    title: "Waste reimagined with advanced business solutions",
-    image: "/images/waste.jpg",
+    title: "Empowering change",
+    description: "Through circular economy",
+    image: "/hero/hero.png",
   },
   {
-    id: "04",
-    title: "Empowering change through circular economy",
-    image: "/images/circular.jpg",
-  },
-  {
-    id: "05",
-    title: "We are built on sustainability",
-    image: "/images/sustainability.jpg",
+    title: "Built on sustainability",
+    description: "Our core foundation",
+    image: "/hero/hero.png",
   },
 ];
 
@@ -65,47 +59,69 @@ const Home = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % sections.length);
+      setActiveIndex((prev) => (prev + 1) % carouselItems.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [carouselItems.length]);
 
   return (
     <>
-      <section className="relative h-screen w-full overflow-hidden">
-        {/* Background Image */}
-        <motion.div
-          key={sections[activeIndex].image}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${sections[activeIndex].image})` }}
-        />
-
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center text-white text-center">
-          <motion.h1
-            key={sections[activeIndex].title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl md:text-5xl font-bold"
-          >
-            {sections[activeIndex].title}
-          </motion.h1>
-          <p className="mt-2 text-gray-300">Scroll to explore more</p>
+      <section className="relative w-full h-[80vh] overflow-hidden">
+        {/* Background images */}
+        <div className="absolute inset-0">
+          {carouselItems.map((item, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === activeIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                style={{ objectFit: "cover" }}
+                priority={index === 0}
+              />
+            </div>
+          ))}
         </div>
 
-        {/* Navigation Indicators */}
-        <div className="absolute right-5 top-1/2 transform -translate-y-1/2 flex flex-col space-y-2">
-          {sections.map((section, index) => (
-            <div
-              key={section.id}
-              className={clsx(
-                "w-3 h-3 rounded-full transition-all duration-300",
-                activeIndex === index ? "bg-white scale-125" : "bg-gray-500"
-              )}
+        {/* Content overlay */}
+        <div className="relative z-10 h-full flex items-center justify-center text-white bg-black/30">
+          <div className="max-w-4xl px-8 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              We are built on sustainability
+            </h1>
+
+            <div className="relative h-40">
+              {carouselItems.map((item, index) => (
+                <div
+                  key={index}
+                  className={`absolute top-0 left-0 w-full transition-opacity duration-1000 ${
+                    index === activeIndex ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  <h2 className="text-2xl md:text-4xl font-semibold mb-4">
+                    {item.title}
+                  </h2>
+                  <p className="text-xl md:text-2xl">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation dots */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          {carouselItems.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`w-3 h-3 rounded-full transition-colors ${
+                index === activeIndex ? "bg-white" : "bg-white/50"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
