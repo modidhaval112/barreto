@@ -21,12 +21,12 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md z-50">
+    <header className="fixed top-0 left-0 w-full backdrop-blur-md z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
-            src="/logo.svg"
+            src="/logo/logo.svg"
             alt="Barreto Logo"
             width={120}
             height={40}
@@ -37,11 +37,7 @@ const Header = () => {
         {/* Navigation Links - Desktop */}
         <nav className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-white hover:text-gray-300 transition-colors duration-300"
-            >
+            <Link key={link.href} href={link.href}>
               {link.label}
             </Link>
           ))}

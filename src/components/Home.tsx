@@ -29,27 +29,27 @@ const carouselItems = [
 const certifications = [
   {
     name: "ISO 14064",
-    logo: "/path-to-iso-14064-logo.png",
+    logo: "/certifications/iso.webp",
   },
   {
     name: "GRE Emissions",
-    logo: "/path-to-gre-emissions-logo.png",
+    logo: "/certifications/recycle.webp",
   },
   {
     name: "UK Cycle Resources",
-    logo: "/path-to-uk-cycle-logo.png",
+    logo: "/certifications/limca.svg",
   },
   {
     name: "NGA",
-    logo: "/path-to-nga-logo.png",
+    logo: "/certifications/thali.svg",
   },
   {
     name: "RTS/RDS",
-    logo: "/path-to-rts-logo.png",
+    logo: "/certifications/uttarakhand.svg",
   },
   {
     name: "NASA",
-    logo: "/path-to-nasa-logo.png",
+    logo: "/certifications/nasa.webp",
   },
   // Add more certifications as needed
 ];
@@ -127,7 +127,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="main-content p-8 grid grid-cols-2 gap-8 items-center">
+      <section className="main-content p-10 grid grid-cols-2 gap-10 items-center lg:py-[58px] lg:px-[82px]">
         <div className="flex flex-col justify-center">
           <h2 className="text-2xl font-semibold mb-4">
             Building a Circular Economy with Deep-Tech Innovations
