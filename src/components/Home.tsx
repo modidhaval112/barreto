@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Carousel from "./Carousel";
+import { motion } from "framer-motion";
 
 const carouselItems = [
   {
@@ -209,38 +210,60 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="relative h-[500px] flex items-center">
-        {/* Background with overlay */}
-        <div className="absolute inset-0 bg-black/50 z-0">
-          {/* Replace with your actual image/GIF path */}
-          <img
-            src="/path-to-your-background.gif"
-            alt="Sustainable future background"
-            className="w-full h-full object-cover"
-          />
-        </div>
 
-        {/* Content */}
-        <div className="container mx-auto px-6 relative z-10 text-white max-w-4xl">
-          <div className="space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              At Attero, our goal goes beyond business its about pioneering a
-              sustainable future
-            </h2>
+      <section>
+        <div className="relative w-full h-screen overflow-hidden">
+          {/* Background Video */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute top-0 left-0 w-full h-full object-cover z-10"
+          >
+            <source src="/video/WebsiteGlobe.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
 
-            <div className="space-y-4 text-lg">
-              <p>
-                We champion the circular economy, ensuring resources are reused
-                responsibly. Our commitment to EPR compliance sets industry
-                standards, driving environmental stewardship.
-              </p>
+          {/* Overlay Content */}
+          <div className="relative z-20 flex items-center justify-center h-full">
+            <motion.div
+              className="text-white text-center max-w-4xl px-6"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <motion.h1
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+              >
+                At Attero, our goal goes beyond business its about pioneering a
+                sustainable future
+              </motion.h1>
 
-              <p>
-                We aim to inspire others to join us in innovating, recycling,
-                and leading the charge towards a greener tomorrow.
-              </p>
-            </div>
+              <motion.div
+                className="space-y-6 text-lg md:text-xl"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 1, ease: "easeOut" }}
+              >
+                <p>
+                  We champion the circular economy, ensuring resources are
+                  reused responsibly. Our commitment to EPR compliance sets
+                  industry standards, driving environmental stewardship.
+                </p>
+                <p>
+                  We aim to inspire others to join us in innovating, recycling,
+                  and leading the charge towards a greener tomorrow.
+                </p>
+              </motion.div>
+            </motion.div>
           </div>
+
+          {/* Gradient Overlay for Better Text Readability */}
+          <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-15" />
         </div>
       </section>
 
