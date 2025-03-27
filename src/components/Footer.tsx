@@ -11,7 +11,7 @@ export default function Footer() {
             width={150}
             height={66}
             className="mb-[47px] mt-6"
-            src="/logo/logo_white.svg"
+            src="/logo/battero_white.svg"
             style={{ color: "transparent" }}
           />
         </Link>

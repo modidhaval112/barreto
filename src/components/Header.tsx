@@ -20,7 +20,7 @@ export default function Header() {
           alt="Company Logo"
           width={164}
           height={47}
-          src="/logo/logo.svg"
+          src="/logo/battero.svg"
           className="text-transparent"
           priority
         />
