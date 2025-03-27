@@ -97,57 +97,39 @@ const PartnershipsMarquee = () => {
   }));
 
   return (
-    <div className="pb-0">
-      <h2 className="font-semibold text-3xl md:text-4xl text-black xl:px-[100px] xl:pb-[20px] sm:pb-[20px] pb-[10px] text-center">
-        Partnerships
-      </h2>
-      <p className="text-[#202020] text-lg md:text-xl text-center px-4 md:px-40 mx-auto font-light">
-        More than 300 enterprises have partnered with us including top-tier
-        automotive and technology industries.
-      </p>
+    <div className="py-8 px-4">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="font-semibold text-3xl md:text-4xl text-black text-center mb-4">
+          Partnerships
+        </h2>
+        <p className="text-[#202020] text-lg md:text-xl text-center max-w-4xl mx-auto mb-8 font-light">
+          More than 300 enterprises have partnered with us including top-tier
+          automotive and technology industries.
+        </p>
 
-      {/* Marquee Container */}
-      <div className="relative h-[210px] overflow-y-hidden mt-8">
-        {/* First Marquee Track */}
-        <div className="flex gap-1 w-max animate-marquee whitespace-nowrap">
-          {marqueeItems.map((partner) => (
-            <div
-              key={`first-${partner.uniqueKey}`}
-              className="min-w-[190px] h-[190px] flex items-center justify-center xl:justify-start px-12 grayscale hover:grayscale-0 transition-all hover:scale-110 duration-300"
-            >
-              <Image
-                src={partner.src}
-                alt={partner.alt}
-                width={230}
-                height={77}
-                className="w-[160px] max-h-[100px] object-contain"
-                unoptimized // Required for external domains
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Second Marquee Track (for seamless looping) */}
-        <div className="flex gap-1 w-max animate-marquee2 whitespace-nowrap absolute top-0">
-          {marqueeItems.map((partner) => (
-            <div
-              key={`second-${partner.uniqueKey}`}
-              className="min-w-[190px] h-[190px] flex items-center justify-center xl:justify-start px-12 grayscale hover:grayscale-0 transition-all hover:scale-110 duration-300"
-            >
-              <Image
-                src={partner.src}
-                alt={partner.alt}
-                width={230}
-                height={77}
-                className="w-[160px] max-h-[100px] object-contain"
-                unoptimized
-              />
-            </div>
-          ))}
+        {/* Marquee Container */}
+        <div className="relative w-full overflow-hidden">
+          <div className="flex animate-marquee">
+            {marqueeItems.map((partner, index) => (
+              <div
+                key={`partner-${partner.id}-${index}`}
+                className="flex-shrink-0 w-[190px] h-[190px] flex items-center justify-center px-4 grayscale hover:grayscale-0 transition-all hover:scale-110 duration-300"
+              >
+                <Image
+                  src={partner.src}
+                  alt={partner.alt}
+                  width={160}
+                  height={100}
+                  className="max-w-[160px] max-h-[100px] object-contain"
+                  loading="lazy"
+                  unoptimized
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Animation Styles */}
       <style jsx>{`
         @keyframes marquee {
           0% {
@@ -158,18 +140,13 @@ const PartnershipsMarquee = () => {
           }
         }
         .animate-marquee {
-          animation: marquee 37.6s linear infinite;
+          display: flex;
+          animation: marquee 6s linear infinite;
         }
-        .animate-marquee2 {
-          animation: marquee 37.6s linear infinite;
-          animation-delay: 18.8s;
-        }
-        .no_scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no_scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+        @media (max-width: 768px) {
+          .animate-marquee {
+            animation: marquee 15s linear infinite;
+          }
         }
       `}</style>
     </div>

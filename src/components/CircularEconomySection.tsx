@@ -22,7 +22,7 @@ const CircularEconomySection = () => {
         <div className="flex flex-col sm:flex-row items-center gap-[30px] sm:gap-[60px] mb-[32px] border-b border-solid border-white pb-[32px]">
           <div className="min-w-[80px]">
             <Image
-              src="/Homepage/Extraction.png"
+              src="/home/Extraction.png"
               alt="Extraction icon"
               width={80}
               height={80}
@@ -45,7 +45,7 @@ const CircularEconomySection = () => {
         <div className="flex flex-col sm:flex-row items-center gap-[30px] sm:gap-[60px] mb-[32px] border-b border-solid border-white pb-[32px]">
           <div className="min-w-[80px]">
             <Image
-              src="/Homepage/Research.png"
+              src="/home/Research.png"
               alt="Research icon"
               width={80}
               height={80}
@@ -68,7 +68,7 @@ const CircularEconomySection = () => {
         <div className="flex flex-col sm:flex-row items-center gap-[30px] sm:gap-[60px] mb-[32px]">
           <div className="min-w-[80px]">
             <Image
-              src="/Homepage/Patents.png"
+              src="/home/Patents.png"
               alt="Patents icon"
               width={80}
               height={80}
