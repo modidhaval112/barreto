@@ -1,98 +1,142 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+interface NavItemProps {
+  href: string;
+  text: string;
+  target?: string;
+}
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/solutions", label: "Solutions" },
-    { href: "/about", label: "About" },
-    { href: "/technology", label: "Technology" },
-    { href: "/contact", label: "Contact" },
-  ];
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+export default function Header() {
+  const [isBusinessSolutionsOpen, setIsBusinessSolutionsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/logo/logo.svg"
-            alt="Barreto Logo"
-            width={120}
-            height={40}
-            className="h-10 w-auto"
-          />
-        </Link>
+    <header className="bg-white h-[88px] flex items-center justify-between px-[20px] lg:px-[68px]">
+      <Link href="/">
+        <Image
+          alt="Company Logo"
+          width={164}
+          height={47}
+          src="/logo/logo.svg"
+          className="text-transparent"
+          priority
+        />
+      </Link>
 
-        {/* Navigation Links - Desktop */}
-        <nav className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-black hover:text-gray-600 transition-colors duration-300"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* CTA and Mobile Menu Toggle */}
-        <div className="flex items-center space-x-4">
-          {/* Desktop CTA */}
-          <Link
-            href="/get-started"
-            className="hidden md:block bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300"
+      {/* Mobile menu button */}
+      <div className="lg:hidden">
+        <button aria-label="Toggle menu">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 448 512"
+            className="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Get Started
-          </Link>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={toggleMenu}
-            className="md:hidden text-black focus:outline-none"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+            <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
+          </svg>
+        </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 bg-white z-40 md:hidden">
-          <div className="flex flex-col items-center justify-center h-full space-y-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={toggleMenu}
-                className="text-2xl text-black hover:text-gray-600 transition-colors duration-300"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="/get-started"
-              onClick={toggleMenu}
-              className="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-colors duration-300"
+      {/* Navigation - Desktop */}
+      <nav className="z-10 hidden absolute top-[88px] left-0 w-full bg-white lg:static lg:block lg:w-auto">
+        <ul className="flex flex-col lg:flex-row items-center lg:gap-6">
+          {/* Business Solutions Dropdown */}
+          <li className="relative font-medium text-xl leading-[27px] text-black py-4 lg:py-0">
+            <button
+              className="flex items-center justify-center gap-2 m-auto"
+              onClick={() =>
+                setIsBusinessSolutionsOpen(!isBusinessSolutionsOpen)
+              }
+              aria-expanded={isBusinessSolutionsOpen}
+              aria-haspopup="true"
             >
-              Get Started
+              Business Solutions
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 448 512"
+                className={`h-4 w-4 transition-transform ${
+                  isBusinessSolutionsOpen ? "rotate-180" : ""
+                }`}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+              </svg>
+            </button>
+
+            {/* Dropdown Menu */}
+            {isBusinessSolutionsOpen && (
+              <ul className="lg:absolute -left-6 top-10 mt-2 bg-gray-200 shadow-2xl rounded-lg lg:w-60 w-full py-4 px-6 border">
+                <DropdownItem href="/e-waste" text="E-waste Management" />
+                <DropdownItem
+                  href="/lithium-ion-battery-management"
+                  text="Lithium-ion Battery Management"
+                />
+                <DropdownItem href="/upcycling" text="Upcycling" />
+                <DropdownItem href="/selsmart" text="Selsmart" />
+                <DropdownItem href="/metalmandi" text="MetalMandi" />
+                <DropdownItem href="/green-metals" text="Green Metals" />
+                <DropdownItem
+                  href="/software-technology"
+                  text="Software Technology"
+                />
+              </ul>
+            )}
+          </li>
+
+          <NavItem href="/sustainability" text="Sustainability" />
+          <NavItem href="/about" text="About Us" />
+          <NavItem href="/people-and-culture" text="People & Culture" />
+          <NavItem href="/blog" text="Blogs" />
+          <NavItem href="/media" text="Media" />
+
+          <li className="py-4 lg:py-0">
+            <Link href="/contact">
+              <button className="w-50 h-14 rounded-lg bg-black text-white text-xl leading-[27px] hover:bg-gray-800 transition-colors">
+                <span className="flex items-center justify-center gap-2">
+                  Get in touch
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 512 512"
+                    className="text-white h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path>
+                  </svg>
+                </span>
+              </button>
             </Link>
-          </div>
-        </div>
-      )}
+          </li>
+        </ul>
+      </nav>
     </header>
   );
-};
+}
 
-export default Header;
+// Reusable navigation item component
+function NavItem({ href, text }: NavItemProps) {
+  return (
+    <li className="font-medium text-xl leading-[27px] text-center text-black py-4 lg:py-0 hover:text-gray-600 transition-colors">
+      <Link href={href}>{text}</Link>
+    </li>
+  );
+}
+
+// Reusable dropdown item component
+function DropdownItem({ href, text, target }: NavItemProps) {
+  return (
+    <li className="py-2 px-4 mb-2 text-md hover:bg-white underline-offset-4 hover:text-gray-500 rounded-md">
+      <Link href={href} target={target}>
+        {text}
+      </Link>
+    </li>
+  );
+}

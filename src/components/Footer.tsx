@@ -1,109 +1,196 @@
 import Link from "next/link";
+import Image from "next/image";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Business Solutions */}
-          <div>
-            <h3 className="text-white text-lg font-semibold mb-4">
-              Business Solutions
-            </h3>
-            <ul className="space-y-2">
-              {[
-                "E-waste Management",
-                "Lithium-ion Battery Management",
-                "Upcycling",
-                "Green Metals",
-                "Selsmart",
-                "MetallMandi",
-              ].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+    <div className="bg-black w-full h-auto px-8 xl:px-[50px] pt-[56px] pb-[42px]">
+      <div className="flex justify-between sm:gap-[20px] max-md:flex-wrap">
+        <Link href="/">
+          <Image
+            alt="logo"
+            width={150}
+            height={66}
+            className="mb-[47px] mt-6"
+            src="/logo/logo_white.svg"
+            style={{ color: "transparent" }}
+          />
+        </Link>
 
-          {/* Sustainability */}
-          <div>
-            <h3 className="text-white text-lg font-semibold mb-4">
-              Sustainability
-            </h3>
-            <ul className="space-y-2">
-              {["Software Technology", "People & Culture"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="flex mt-[15px] gap-[30px] max-md:flex-wrap text-[#F4F8E7] leading-[27px]">
+          {/* Business Solutions Column */}
+          <ul>
+            <li className="text-[#F4F8E7] sub_heading font-semibold mb-[24px]">
+              <p>Business Solutions</p>
+            </li>
+            <FooterLink href="/e-waste" text="E-waste Management" />
+            <FooterLink
+              href="/lithium-ion-battery-management"
+              text="Lithium-ion Battery Management"
+            />
+            <FooterLink href="/upcycling" text="Upcycling" />
+            <FooterLink href="/green-metals" text="Green Metals" />
+            <FooterLink href="/selsmart" text="Selsmart" />
+            <FooterLink href="/metalmandi" text="MetalMandi" />
+          </ul>
 
-          {/* About Us */}
-          <div>
-            <h3 className="text-white text-lg font-semibold mb-4">About Us</h3>
-            <ul className="space-y-2">
-              {["Media", "Blogs"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Middle Column */}
+          <ul>
+            <FooterHeadingLink href="/sustainability" text="Sustainability" />
+            <FooterHeadingLink
+              href="/software-technology"
+              text="Software Technology"
+            />
+            <FooterHeadingLink
+              href="/people-and-culture"
+              text="People & Culture"
+            />
+          </ul>
 
-          {/* Get In Touch */}
-          <div>
-            <h3 className="text-white text-lg font-semibold mb-4">
-              Get In Touch
-            </h3>
-            <ul className="space-y-2">
-              <li className="flex items-center">
-                <span className="inline-block w-4 h-4 bg-green-500 rounded-full mr-2"></span>
-                <span>1900-102-9882</span>
-              </li>
-              <li className="flex items-center">
-                <span className="inline-block w-4 h-4 bg-green-500 rounded-full mr-2"></span>
-                <a
-                  href="mailto:info@attero.in"
-                  className="hover:text-white transition-colors"
-                >
-                  info@attero.in
-                </a>
-              </li>
-            </ul>
-          </div>
+          {/* Right Column */}
+          <ul>
+            <FooterHeadingLink href="/about" text="About Us" />
+            <FooterHeadingLink href="/media" text="Media" />
+            <FooterHeadingLink href="/blog" text="Blogs" />
+          </ul>
         </div>
 
-        {/* Bottom section */}
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <p className="text-gray-400">© Attero 2025. All rights reserved.</p>
+        {/* Contact and Social Section */}
+        <div className="mt-[15px]">
+          <Link
+            href="/contact-us"
+            className="font-semibold text-[#F4F8E7] sub_heading"
+          >
+            Get In Touch
+          </Link>
+
+          <div className="flex items-center gap-6 mt-[30px]">
+            <SocialIcon
+              href="https://www.linkedin.com/company/attero-recycling-pvt-ltd/"
+              src="/social/Linkedin.svg"
+              alt="linkedin"
+            />
+            <SocialIcon
+              href="https://x.com/AtteroIndia/"
+              src="/social/twitter.svg"
+              alt="twitter"
+            />
+            <SocialIcon
+              href="https://www.facebook.com/AtteroIndia/"
+              src="/social/facebook.svg"
+              alt="FB"
+            />
+            <SocialIcon
+              href="https://www.instagram.com/atteroindia/"
+              src="/social/instagram.svg"
+              alt="instagram"
+            />
+            <SocialIcon
+              href="https://www.youtube.com/channel/UCNEDUFLDXEe3JcjKs6TkAQQ"
+              src="/social/youtube.svg"
+              alt="yt"
+              width={38}
+            />
           </div>
-          <div className="flex space-x-6">
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Terms and Conditions
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Privacy Policy
-            </Link>
-          </div>
+
+          <ul className="mt-[45px]">
+            <li className="flex items-center gap-4 mb-[33px]">
+              <Image
+                src="/social/call.svg"
+                alt=""
+                width={40}
+                height={40}
+                className="invert"
+              />
+              <p className="body_2 text-white underline">1800-102-9882</p>
+            </li>
+            <li className="flex items-center gap-4 mb-[20px]">
+              <Image
+                src="/social/mail.svg"
+                alt=""
+                width={40}
+                height={40}
+                className="invert"
+              />
+              <a href="mailto:info@attero.in" className="body_2 text-white">
+                info@attero.in
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-    </footer>
-  );
-};
 
-export default Footer;
+      <div
+        className="border-b border-solid border-[#F4F8E7] opacity-[20%] w-full"
+        style={{ marginTop: "80px" }}
+      />
+
+      <div className="flex items-center justify-between pt-6 text-white">
+        <p className="body_2 opacity-[80%] font-[200]">
+          © Attero 2025. All rights reserved.
+        </p>
+
+        <div className="flex gap-[48px]">
+          <FooterTextLink
+            href="/terms-and-conditions"
+            text="Terms and Conditions"
+          />
+          <FooterTextLink href="/privacy-policy" text="Privacy Policy" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Reusable Footer Components
+function FooterLink({ href, text }: { href: string; text: string }) {
+  return (
+    <li className="text-[#F4F8E7] body_2 mb-[17px]">
+      <Link href={href} target="_blank">
+        {text}
+      </Link>
+    </li>
+  );
+}
+
+function FooterHeadingLink({ href, text }: { href: string; text: string }) {
+  return (
+    <li className="text-[#F4F8E7] sub_heading font-semibold mb-[24px]">
+      <Link href={href} target="_blank">
+        {text}
+      </Link>
+    </li>
+  );
+}
+
+function FooterTextLink({ href, text }: { href: string; text: string }) {
+  return (
+    <p className="body_2 opacity-[80%] font-[200] cursor-pointer">
+      <Link href={href}>{text}</Link>
+    </p>
+  );
+}
+
+function SocialIcon({
+  href,
+  src,
+  alt,
+  width = 30,
+}: {
+  href: string;
+  src: string;
+  alt: string;
+  width?: number;
+}) {
+  return (
+    <Link href={href} target="_blank">
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={30}
+        className="invert size-[30px]"
+        style={{ color: "transparent" }}
+      />
+    </Link>
+  );
+}

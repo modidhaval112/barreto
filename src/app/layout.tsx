@@ -8,9 +8,7 @@ export default function RootLayout() {
     <html lang="en">
       <body>
         <Header />
-        <main className="main-content">
-          <Home />
-        </main>
+        <Home />
         <Footer />
       </body>
     </html>
