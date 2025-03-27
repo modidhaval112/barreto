@@ -135,20 +135,6 @@ const SustainabilitySlider = () => {
         ))}
       </div>
 
-      {/* Navigation Dots - Mobile */}
-      <div className="md:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleDotClick(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === activeIndex ? "bg-white w-6" : "bg-white/50"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-
       {/* Custom CSS to hide scrollbar in WebKit browsers */}
       <style jsx>{`
         .scrollbar-hide::-webkit-scrollbar {
