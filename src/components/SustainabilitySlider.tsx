@@ -89,23 +89,23 @@ const SustainabilitySlider = () => {
         {slides.map((slide, index) => (
           <section
             key={index}
-            className="relative h-[650px] md:h-[92vh] flex-shrink-0 w-full snap-start"
+            className="relative h-[650px] sm:h-[750px] md:h-[92vh] flex-shrink-0 w-full snap-start bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: `url(${slide.image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              backgroundRepeat: "no-repeat",
             }}
           >
+            {/* Overlay to ensure text readability */}
+            <div className="absolute inset-0 bg-black/20"></div>
+
             {/* Content */}
-            <div className="absolute left-[20px] bottom-5 md:bottom-[130px] md:left-[40px] lg:left-[98px] w-[70%] md:w-[60%]">
+            <div className="relative z-10 absolute left-[20px] bottom-5 md:bottom-[130px] md:left-[40px] lg:left-[98px] w-[70%] md:w-[60%]">
               <h3 className="font-bold text-white text-3xl md:text-5xl lg:text-6xl">
                 {slide.title}
               </h3>
             </div>
 
             {/* Right side list */}
-            <div className="absolute right-[20px] md:right-[40px] lg:right-[118px] bottom-[150px] md:bottom-[110px]">
+            <div className="relative z-10 absolute right-[20px] md:right-[40px] lg:right-[118px] bottom-[150px] md:bottom-[110px]">
               <ul className="border-r-[0.5px] border-solid border-[#8c935c] pr-4">
                 {slides.map((item, idx) => (
                   <li
@@ -136,7 +136,7 @@ const SustainabilitySlider = () => {
       </div>
 
       {/* Navigation Dots - Mobile */}
-      <div className="md:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      <div className="md:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
         {slides.map((_, index) => (
           <button
             key={index}
