@@ -2,16 +2,6 @@
 import Image from "next/image";
 
 const PartnershipsMarquee = () => {
-  // First configure your next.config.js to allow the image domains
-  // Add this to next.config.js:
-  /*
-  module.exports = {
-    images: {
-      domains: ['attero-strapi.orbitsglobal.com'],
-    },
-  }
-  */
-
   const partners = [
     {
       id: 1,
@@ -97,8 +87,8 @@ const PartnershipsMarquee = () => {
   }));
 
   return (
-    <div className="py-8 px-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="w-full py-10">
+      <div className="text-3xl md:text-4xl text-center font-bold text-black mb-8">
         <h2 className="font-semibold text-3xl md:text-4xl text-black text-center mb-4">
           Partnerships
         </h2>

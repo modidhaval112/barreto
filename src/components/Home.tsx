@@ -1,5 +1,4 @@
 "use client";
-import Carousel from "./Carousel";
 import SustainabilitySlider from "./SustainabilitySlider";
 import CircularEconomySection from "./CircularEconomySection";
 import BusinessSolutionsCarousel from "./BusinessSolutionsCarousel";
@@ -13,7 +12,6 @@ const Home = () => {
       <SustainabilitySlider />
       <CircularEconomySection />
       <BusinessSolutionsCarousel />
-      <Carousel />
       <ImpactSection />
       <CertificationsMarquee />
       <PartnershipsMarquee />
